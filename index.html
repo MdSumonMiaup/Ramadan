@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ramadan 2021 Time Table is a web based apps for Ramadan 2021 Bangladesh Shahri and Iftar Time.">
+    <meta name="keywords" content="Ramadan 2021, Ramadan Time table 2021, Ramadan Shahri and Iftar Time 2021 Bangladesh">
+    <meta name="author" content="Md Sumon Mia">
+    <title>Ramadan Time Table 2021</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    
+    <style>
+        /*
+        About          
+        =========================
+        Theme Name: Ramadan Time Table 2021 Bangladesh
+        Theme URI: https://thew3lab.xyz/template/ramadan/
+        Author: Md Sumon Mia
+        Author URI: https://mdsumonmia.com
+        Description: Ramadan 2021 Time Table is a web based apps for Ramadan 2021 Bangladesh Shahri and Iftar Time.
+        Version: 1.0.0
+        */
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-family: 'Exo 2', sans-serif;
+        }
+        .ramadan {
+            text-align: center;
+            margin-top: 50px;
+        }
+        #ramadanDay {
+            color: #ff0018;
+        }
+        .ramadan__table table {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        table tr:nth-child(odd) {
+            background-color: #ededed;
+        }
+        .table__heading {
+            background: green !important;
+            color: #fff;
+        }
+        table tr td,
+        table tr th {
+            border: 1px solid #ededed;
+            border-collapse: collapse;
+            padding: 12px 20px;
+            text-align: left;
+        }
+        .eid {
+            text-align: center;
+        }
+        #eid__welcome {
+            display: none;
+        }
+        #duwa {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .duwa-btn {
+            display: inline-block;
+            background: green;
+            color: #fff;
+            padding: 12px 30px;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 8px;
+            font-weight: 600;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+        }
+        .duwa-btn:hover {
+            background: #056905;
+        }
+        .duwa-btn:active #saherir-duwa {
+            visibility: visible;
+            opacity: 1;
+        }
+        #saherir-duwa,
+        #iftarer-duwa {
+            max-width: 500px;
+            background: #fff;
+            padding: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: .3s ease-in-out;
+            box-shadow: 0 0 0 8000px rgba(0, 0, 0, .5);
+            border-radius: 10px;
+            padding-bottom: 15px;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 1;
+        }
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        .duwa-title {
+            border-bottom: 1px solid #ededed;
+            padding-bottom: 10px;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        #saherir-duwa p,
+        #iftarer-duwa p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        #saherir-duwa .arbi-text,
+        #iftarer-duwa .arbi-text {
+            font-size: 22px;
+        }
+        .close {
+            background: #ed3838;
+            padding: 6px 15px 10px;
+            border-radius: 6px;
+            color: #fff;
+            float: right;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            transition: .3s ease-in-out;
+        }
+        .close:hover {
+            background: #d41e1e;
+        }
+        #eid__welcome {
+            font-size: 100px;
+            margin: 150px 20px;
+        }
+        #others {
+            text-align: center;
+            max-width: 700px;
+            margin: 50px auto;
+            line-height: 1.6;
+            display: none;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+        .copyright a {
+            color: green;
+            text-decoration: none;
+        }
+
+        @media only screen and (max-width: 1024px) {
+            #saherir-duwa, #iftarer-duwa {
+                min-width: 500px;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .ramadan__table table {
+                width: 90%;
+            }
+            #saherir-duwa, #iftarer-duwa {
+                min-width: 85%;
+                padding: 15px;
+            }
+        }
+        @media only screen and (max-width: 400px) {
+            table tr td, table tr th {
+                padding: 8px 15px;
+            }
+            .duwa-btn {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="ramadan">
+        <h2 class="ramadan__title">Today is <span id="title__date"></span> <span id="title__month"></span> <span id="ramadanDay"></span> Ramadan <span id="title__year"></span></h2>
+        <div class="ramadan__table">
+            <table>
+                <tr class="table__heading">
+                    <th>Division</th>
+                    <th>Sehri</th>
+                    <th>Iftar</th>
+                </tr>
+                <tr>
+                    <td>Dhaka</td>
+                    <td>
+                        <span class="sehriHour"></span>:<span id="sehriMin"></span> AM
+                    </td>
+                    <td>
+                        <span class="iftarHour"></span>:<span id="iftarMin"></span> PM
+                    </td>
+                </tr>
+                <tr id="Mymensingh">
+                    <td>Mymensingh</td>
+                    <td>
+                        <span class="sehriHour"></span>:<span id="sehriMin__mym"></span> AM
+                    </td>
+                    <td>
+                        <span class="iftarHour"></span>:<span id="iftarMin__mym"></span> PM
+                    </td>
+                </tr>
+                <tr id="Barial">
+                    <td>Barisal</td>
+                    <td>
+                        <span class="sehriHour"></span>:<span id="sehriMin__bari"></span> AM
+                    </td>
+                    <td>
+                        <span class="iftarHour"></span>:<span id="iftarMin__bari"></span> PM
+                    </td>
+                </tr>
+                <tr id="Khulna">
+                    <td>Khulna</td>
+                    <td>
+                        <span class="sehriHour"></span>:<span id="sehriMin__kh"></span> AM
+                    </td>
+                    <td>
+                        <span class="iftarHour"></span>:<span id="iftarMin__kh"></span> PM
+                    </td>
+                </tr>
+                <tr id="Rajshahi">
+                    <td>Rajshahi</td>
+                    <td>
+                        <span class="sehriHour"></span>:<span id="sehriMin__rj"></span> AM
+                    </td>
+                    <td>
+                        <span class="iftarHour"></span>:<span id="iftarMin__rj"></span> PM
+                    </td>
+                </tr>
+                <tr id="Rangpur">
+                    <td>Rangpur</td>
+                    <td>
+                        <span class="sehriHour"></span>:<span id="sehriMin__rn"></span> AM
+                    </td>
+                    <td>
+                        <span class="iftarHour"></span>:<span id="iftarMin__rn"></span> PM
+                    </td>
+                </tr>
+                <tr id="Sylhet">
+                    <td>Sylhet</td>
+                    <td>
+                        <span class="sehriHour"></span>:<span id="sehriMin__sl"></span> AM
+                    </td>
+                    <td>
+                        <span class="iftarHour"></span>:<span id="iftarMin__sl"></span> PM
+                    </td>
+                </tr>
+                <tr id="Chattogram">
+                    <td>Chattogram</td>
+                    <td>
+                        <span class="sehriHour"></span>:<span id="sehriMin__ch"></span> AM
+                    </td>
+                    <td>
+                        <span class="iftarHour"></span>:<span id="iftarMin__ch"></span> PM
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="duwa" id="duwa">
+        <button class="duwa-btn" id="sahri-btn">রোজার নিয়ত</button>
+        <button class="duwa-btn" id="iftar-btn">ইফতারের দোয়া</button>
+    </div>
+    <div id="saherir-duwa">
+        <h2 class="duwa-title">রোজার নিয়ত</h2>
+        <div class="arbi-duwa mb-20">
+            <p class="arbi-text">نَوَيْتُ اَنْ اُصُوْمَ غَدًا مِّنْ شَهْرِ رَمْضَانَ الْمُبَارَكِ فَرْضَا لَكَ يَا اللهُ فَتَقَبَّل مِنِّى اِنَّكَ اَنْتَ السَّمِيْعُ الْعَلِيْم</p>
+        </div>
+        <div class="pronunciation mb-20">
+            <p><b>বাংলা উচ্চারণঃ</b> নাওয়াইতু আন আছুম্মা গাদাম মিন শাহরি রমাজানাল মুবারাকি ফারদাল্লাকা, ইয়া আল্লাহু ফাতাকাব্বাল মিন্নি ইন্নিকা আনতাস সামিউল আলিম।</p>
+        </div>
+        <div class="meaning mb-20">
+            <p><b>বাংলা অর্থঃ</b> হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের তোমার পক্ষ থেকে নির্ধারিত ফরজ রোজা রাখার ইচ্ছা পোষণ (নিয়ত) করলাম। অতএব তুমি আমার পক্ষ থেকে (আমার রোজা তথা পানাহার থেকে বিরত থাকাকে) কবুল কর, নিশ্চয়ই তুমি সর্বশ্রোতা ও সর্বজ্ঞানী।</p>
+        </div>
+        <button class="close">Close</button>
+    </div>
+    <div id="iftarer-duwa">
+        <h2 class="duwa-title">ইফতারের দোয়া</h2>
+        <div class="arbi-duwa mb-20">
+            <p class="arbi-text">اَللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ وَ اَفْطَرْتُ بِرَحْمَتِكَ يَا اَرْحَمَ الرَّاحِيْمِيْن</p>
+        </div>
+        <div class="pronunciation mb-20">
+            <p><b>বাংলা উচ্চারণঃ</b> আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিযক্বিকা ওয়া আফতারতু বিরাহমাতিকা ইয়া আরহামার রাহিমিন।</p>
+        </div>
+        <div class="meaning mb-20">
+            <p><b>বাংলা অর্থঃ</b> হে আল্লাহ! আমি তোমারই সন্তুষ্টির জন্য রোজা রেখেছি এবং তোমারই দেয়া রিযিক্বের মাধ্যমে ইফতার করছি।</p>
+        </div>
+        <button class="close">Close</button>
+    </div>
+    <div class="eid">
+        <h2 id="eid__welcome">Today is Eid Day</h2>
+    </div>
+    <div class="copyright">
+        <p>&COPY; Ramadan 2021 all right reserved by <a href="https://mdsumonmia.com/">Md Sumon Mia</a></p>
+    </div>
+
+
+    <script>
+        /*
+        About          
+        =========================
+        Theme Name: Ramadan Time Table 2021 Bangladesh
+        Theme URI: https://thew3lab.xyz/template/ramadan/
+        Author: Md Sumon Mia
+        Author URI: https://mdsumonmia.com
+        Description: Ramadan 2021 Time Table is a web based apps for Ramadan 2021 Bangladesh Shahri and Iftar Time.
+        Version: 1.0.0
+        */
+
+        var today     = new Date(),
+            toDate    = today.getDate(),
+            thisMonth = today.getMonth(),
+            thisYear  = today.getFullYear();
+
+        // Add Zero function {
+        function addZero(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        var ramadanDay1  = new Date("14 April, 2021 04:15"),
+            ruja1        = ramadanDay1.getDate(),
+            sehriHour1   = addZero(ramadanDay1.getHours()),
+            sehriMin1    = addZero(ramadanDay1.getMinutes()),
+            iftarHour1   = addZero(6),
+            iftarMin1    = addZero(23);
+
+        var ramadanDay2  = new Date("15 April, 2021 04:14"),
+            ruja2        = ramadanDay2.getDate(),
+            sehriHour2   = addZero(ramadanDay2.getHours()),
+            sehriMin2    = addZero(ramadanDay2.getMinutes()),
+            iftarHour2   = addZero(6),
+            iftarMin2    = addZero(24);
+
+        var ramadanDay3  = new Date("16 April, 2021 04:13"),
+            ruja3        = ramadanDay3.getDate(),
+            sehriHour3   = addZero(ramadanDay3.getHours()),
+            sehriMin3    = addZero(ramadanDay3.getMinutes()),
+            iftarHour3   = addZero(6),
+            iftarMin3    = addZero(24);
+
+        var ramadanDay4  = new Date("17 April, 2021 04:12"),
+            ruja4        = ramadanDay4.getDate(),
+            sehriHour4   = addZero(ramadanDay4.getHours()),
+            sehriMin4    = addZero(ramadanDay4.getMinutes()),
+            iftarHour4   = addZero(6),
+            iftarMin4    = addZero(24);
+
+        var ramadanDay5  = new Date("18 April, 2021 04:11"),
+            ruja5        = ramadanDay5.getDate(),
+            sehriHour5   = addZero(ramadanDay5.getHours()),
+            sehriMin5    = addZero(ramadanDay5.getMinutes()),
+            iftarHour5   = addZero(6),
+            iftarMin5    = addZero(25);
+
+        var ramadanDay6  = new Date("19 April, 2021 04:10"),
+            ruja6        = ramadanDay6.getDate(),
+            sehriHour6   = addZero(ramadanDay6.getHours()),
+            sehriMin6    = addZero(ramadanDay6.getMinutes()),
+            iftarHour6   = addZero(6),
+            iftarMin6    = addZero(25);
+
+        var ramadanDay7  = new Date("20 April, 2021 04:09"),
+            ruja7        = ramadanDay7.getDate(),
+            sehriHour7   = addZero(ramadanDay7.getHours()),
+            sehriMin7    = addZero(ramadanDay7.getMinutes()),
+            iftarHour7   = addZero(6),
+            iftarMin7    = addZero(26);
+
+        var ramadanDay8  = new Date("21 April, 2021 04:08"),
+            ruja8        = ramadanDay8.getDate(),
+            sehriHour8   = addZero(ramadanDay8.getHours()),
+            sehriMin8    = addZero(ramadanDay8.getMinutes()),
+            iftarHour8   = addZero(6),
+            iftarMin8    = addZero(26);
+
+        var ramadanDay9  = new Date("22 April, 2021 04:07"),
+            ruja9        = ramadanDay9.getDate(),
+            sehriHour9   = addZero(ramadanDay9.getHours()),
+            sehriMin9    = addZero(ramadanDay9.getMinutes()),
+            iftarHour9   = addZero(6),
+            iftarMin9    = addZero(27);
+
+        var ramadanDay10  = new Date("23 April, 2021 04:06"),
+            ruja10        = ramadanDay10.getDate(),
+            sehriHour10   = addZero(ramadanDay10.getHours()),
+            sehriMin10    = addZero(ramadanDay10.getMinutes()),
+            iftarHour10   = addZero(6),
+            iftarMin10    = addZero(27);
+
+        var ramadanDay11  = new Date("24 April, 2021 04:05"),
+            ruja11        = ramadanDay11.getDate(),
+            sehriHour11   = addZero(ramadanDay11.getHours()),
+            sehriMin11    = addZero(ramadanDay11.getMinutes()),
+            iftarHour11   = addZero(6),
+            iftarMin11    = addZero(28);
+
+        var ramadanDay12  = new Date("25 April, 2021 04:05"),
+            ruja12        = ramadanDay12.getDate(),
+            sehriHour12   = addZero(ramadanDay12.getHours()),
+            sehriMin12    = addZero(ramadanDay12.getMinutes()),
+            iftarHour12   = addZero(6),
+            iftarMin12    = addZero(28);
+
+        var ramadanDay13  = new Date("26 April, 2021 04:04"),
+            ruja13        = ramadanDay13.getDate(),
+            sehriHour13   = addZero(ramadanDay13.getHours()),
+            sehriMin13    = addZero(ramadanDay13.getMinutes()),
+            iftarHour13   = addZero(6),
+            iftarMin13    = addZero(29);
+            
+        var ramadanDay14  = new Date("27 April, 2021 04:03"),
+            ruja14        = ramadanDay14.getDate(),
+            sehriHour14   = addZero(ramadanDay14.getHours()),
+            sehriMin14    = addZero(ramadanDay14.getMinutes()),
+            iftarHour14   = addZero(6),
+            iftarMin14    = addZero(29);
+
+        var ramadanDay15  = new Date("28 April, 2021 04:02"),
+            ruja15        = ramadanDay15.getDate(),
+            sehriHour15   = addZero(ramadanDay15.getHours()),
+            sehriMin15    = addZero(ramadanDay15.getMinutes()),
+            iftarHour15   = addZero(6),
+            iftarMin15    = addZero(29);
+
+        var ramadanDay16  = new Date("29 April, 2021 04:01"),
+            ruja16        = ramadanDay16.getDate(),
+            sehriHour16   = addZero(ramadanDay16.getHours()),
+            sehriMin16    = addZero(ramadanDay16.getMinutes()),
+            iftarHour16   = addZero(6),
+            iftarMin16    = addZero(30);
+
+        var ramadanDay17  = new Date("30 April, 2021 04:00"),
+            ruja17        = ramadanDay17.getDate(),
+            sehriHour17   = addZero(ramadanDay17.getHours()),
+            sehriMin17    = addZero(ramadanDay17.getMinutes()),
+            iftarHour17   = addZero(6),
+            iftarMin17    = addZero(30);
+
+        var ramadanDay18  = new Date("1 May, 2021 03:59"),
+            ruja18        = ramadanDay18.getDate(),
+            sehriHour18   = addZero(ramadanDay18.getHours()),
+            sehriMin18    = addZero(ramadanDay18.getMinutes()),
+            iftarHour18   = addZero(6),
+            iftarMin18    = addZero(31);
+
+        var ramadanDay19  = new Date("2 May, 2021 03:58"),
+            ruja19        = ramadanDay19.getDate(),
+            sehriHour19   = addZero(ramadanDay19.getHours()),
+            sehriMin19    = addZero(ramadanDay19.getMinutes()),
+            iftarHour19   = addZero(6),
+            iftarMin19    = addZero(31);
+
+        var ramadanDay20  = new Date("3 May, 2021 03:57"),
+            ruja20        = ramadanDay20.getDate(),
+            sehriHour20   = addZero(ramadanDay20.getHours()),
+            sehriMin20    = addZero(ramadanDay20.getMinutes()),
+            iftarHour20   = addZero(6),
+            iftarMin20    = addZero(32);
+
+        var ramadanDay21  = new Date("4 May, 2021 03:55"),
+            ruja21        = ramadanDay21.getDate(),
+            sehriHour21   = addZero(ramadanDay21.getHours()),
+            sehriMin21    = addZero(ramadanDay21.getMinutes()),
+            iftarHour21   = addZero(6),
+            iftarMin21    = addZero(32);
+
+        var ramadanDay22  = new Date("5 May, 2021 03:54"),
+            ruja22        = ramadanDay22.getDate(),
+            sehriHour22   = addZero(ramadanDay22.getHours()),
+            sehriMin22    = addZero(ramadanDay22.getMinutes()),
+            iftarHour22   = addZero(6),
+            iftarMin22    = addZero(33);
+            
+        var ramadanDay23  = new Date("6 May, 2021 03:53"),
+            ruja23        = ramadanDay23.getDate(),
+            sehriHour23   = addZero(ramadanDay23.getHours()),
+            sehriMin23    = addZero(ramadanDay23.getMinutes()),
+            iftarHour23   = addZero(6),
+            iftarMin23    = addZero(33);
+
+        var ramadanDay24  = new Date("7 May, 2021 03:52"),
+            ruja24        = ramadanDay24.getDate(),
+            sehriHour24   = addZero(ramadanDay24.getHours()),
+            sehriMin24    = addZero(ramadanDay24.getMinutes()),
+            iftarHour24   = addZero(6),
+            iftarMin24    = addZero(34);
+
+        var ramadanDay25  = new Date("8 May, 2021 03:51"),
+            ruja25        = ramadanDay25.getDate(),
+            sehriHour25   = addZero(ramadanDay25.getHours()),
+            sehriMin25    = addZero(ramadanDay25.getMinutes()),
+            iftarHour25   = addZero(6),
+            iftarMin25    = addZero(34);
+
+        var ramadanDay26  = new Date("9 May, 2021 03:50"),
+            ruja26        = ramadanDay26.getDate(),
+            sehriHour26   = addZero(ramadanDay26.getHours()),
+            sehriMin26    = addZero(ramadanDay26.getMinutes()),
+            iftarHour26   = addZero(6),
+            iftarMin26    = addZero(35);
+
+        var ramadanDay27  = new Date("10 May, 2021 03:50"),
+            ruja27        = ramadanDay27.getDate(),
+            sehriHour27   = addZero(ramadanDay27.getHours()),
+            sehriMin27    = addZero(ramadanDay27.getMinutes()),
+            iftarHour27   = addZero(6),
+            iftarMin27    = addZero(35);
+
+        var ramadanDay28  = new Date("11 May, 2021 03:49"),
+            ruja28        = ramadanDay28.getDate(),
+            sehriHour28   = addZero(ramadanDay28.getHours()),
+            sehriMin28    = addZero(ramadanDay28.getMinutes()),
+            iftarHour28   = addZero(6),
+            iftarMin28    = addZero(36);
+
+        var ramadanDay29  = new Date("12 May, 2021 03:49"),
+            ruja29        = ramadanDay29.getDate(),
+            sehriHour29   = addZero(ramadanDay29.getHours()),
+            sehriMin29    = addZero(ramadanDay29.getMinutes()),
+            iftarHour29   = addZero(6),
+            iftarMin29    = addZero(36);
+            
+        var ramadanDay30  = new Date("13 May, 2021 03:48"),
+            ruja30        = ramadanDay30.getDate(),
+            sehriHour30   = addZero(ramadanDay30.getHours()),
+            sehriMin30    = addZero(ramadanDay30.getMinutes()),
+            iftarHour30   = addZero(6),
+            iftarMin30    = addZero(36);
+
+        var eidDay        = new Date("14 May, 2021 03:48"),
+            eidDate       = eidDay.getDate();
+
+        var sehriHour = document.getElementsByClassName('sehriHour'),
+            iftarHour = document.getElementsByClassName('iftarHour'),
+            sehriMin  = document.getElementById('sehriMin'),
+            iftarMin  = document.getElementById('iftarMin'),
+
+            // Mymemsingh
+            sehriMin__mym = document.getElementById('sehriMin__mym'),
+            iftarMin__mym = document.getElementById('iftarMin__mym'),
+            // Barisal
+            sehriMin__bari = document.getElementById('sehriMin__bari'),
+            iftarMin__bari = document.getElementById('iftarMin__bari'),
+            // Barisal
+            sehriMin__kh = document.getElementById('sehriMin__kh'),
+            iftarMin__kh = document.getElementById('iftarMin__kh'),
+            // Rajshahi
+            sehriMin__rj = document.getElementById('sehriMin__rj'),
+            iftarMin__rj = document.getElementById('iftarMin__rj'),
+            // Rangpur
+            sehriMin__rn = document.getElementById('sehriMin__rn'),
+            iftarMin__rn = document.getElementById('iftarMin__rn'),
+            // Sylhet
+            sehriMin__sl = document.getElementById('sehriMin__sl'),
+            iftarMin__sl = document.getElementById('iftarMin__sl'),
+            // Chattogram
+            sehriMin__ch = document.getElementById('sehriMin__ch'),
+            iftarMin__ch = document.getElementById('iftarMin__ch'),
+
+            ramadanDay = document.getElementById('ramadanDay');
+
+        // Title Information
+        document.getElementById('title__date').innerHTML = toDate;
+        document.getElementById('title__year').innerHTML = thisYear;
+        if (thisMonth == 4 ) {
+            document.getElementById('title__month').innerHTML = 'May';
+
+            // Times
+
+            if (toDate == ruja18) {
+                ramadanDay.innerHTML = '18th';
+                sehriHour[0].innerHTML = sehriHour18;
+                sehriMin.innerHTML = sehriMin18;
+                iftarHour[0].innerHTML = iftarHour18;
+                iftarMin.innerHTML = iftarMin18;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour18;
+                iftarHour[1].innerHTML = iftarHour18;
+                sehriMin__mym.innerHTML = sehriMin18 - 3;
+                iftarMin__mym.innerHTML = iftarMin18 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour18;
+                iftarHour[2].innerHTML = iftarHour18;
+                sehriMin__bari.innerHTML = sehriMin18 + 2;
+                iftarMin__bari.innerHTML = iftarMin18 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour18;
+                iftarHour[3].innerHTML = iftarHour18;
+                sehriMin__kh.innerHTML = sehriMin18 + 5;
+                iftarMin__kh.innerHTML = iftarMin18 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour18;
+                iftarHour[4].innerHTML = iftarHour18;
+                sehriMin__rj.innerHTML = sehriMin18 + 5;
+                iftarMin__rj.innerHTML = iftarMin18 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour18;
+                iftarHour[5].innerHTML = iftarHour18;
+                sehriMin__rn.innerHTML = sehriMin18;
+                iftarMin__rn.innerHTML = iftarMin18;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour18;
+                iftarHour[6].innerHTML = iftarHour18;
+                sehriMin__sl.innerHTML = sehriMin18 - 7;
+                iftarMin__sl.innerHTML = iftarMin18 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour18;
+                iftarHour[7].innerHTML = iftarHour18;
+                sehriMin__ch.innerHTML = sehriMin18 - 2;
+                iftarMin__ch.innerHTML = iftarMin18 - 7;
+            } else if (toDate == ruja19) {
+                ramadanDay.innerHTML = '19th';
+                sehriHour[0].innerHTML = sehriHour19;
+                sehriMin.innerHTML = sehriMin19;
+                iftarHour[0].innerHTML = iftarHour19;
+                iftarMin.innerHTML = iftarMin19;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour19;
+                iftarHour[1].innerHTML = iftarHour19;
+                sehriMin__mym.innerHTML = sehriMin19 - 3;
+                iftarMin__mym.innerHTML = iftarMin19 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour19;
+                iftarHour[2].innerHTML = iftarHour19;
+                sehriMin__bari.innerHTML = sehriMin19 + 2;
+                iftarMin__bari.innerHTML = iftarMin19 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour19;
+                iftarHour[3].innerHTML = iftarHour19;
+                sehriMin__kh.innerHTML = sehriMin19 + 5;
+                iftarMin__kh.innerHTML = iftarMin19 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour19;
+                iftarHour[4].innerHTML = iftarHour19;
+                sehriMin__rj.innerHTML = sehriMin19 + 5;
+                iftarMin__rj.innerHTML = iftarMin19 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour19;
+                iftarHour[5].innerHTML = iftarHour19;
+                sehriMin__rn.innerHTML = sehriMin19;
+                iftarMin__rn.innerHTML = iftarMin19;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour19;
+                iftarHour[6].innerHTML = iftarHour19;
+                sehriMin__sl.innerHTML = sehriMin19 - 7;
+                iftarMin__sl.innerHTML = iftarMin19 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour19;
+                iftarHour[7].innerHTML = iftarHour19;
+                sehriMin__ch.innerHTML = sehriMin19 - 2;
+                iftarMin__ch.innerHTML = iftarMin19 - 7;
+            } else if (toDate == ruja20) {
+                ramadanDay.innerHTML = '20th';
+                sehriHour[0].innerHTML = sehriHour20;
+                sehriMin.innerHTML = sehriMin20;
+                iftarHour[0].innerHTML = iftarHour20;
+                iftarMin.innerHTML = iftarMin20;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour20;
+                iftarHour[1].innerHTML = iftarHour20;
+                sehriMin__mym.innerHTML = sehriMin20 - 3;
+                iftarMin__mym.innerHTML = iftarMin20 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour20;
+                iftarHour[2].innerHTML = iftarHour20;
+                sehriMin__bari.innerHTML = sehriMin20 + 2;
+                iftarMin__bari.innerHTML = iftarMin20 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour20;
+                iftarHour[3].innerHTML = iftarHour20;
+                sehriMin__kh.innerHTML = sehriMin20 + 5;
+                iftarMin__kh.innerHTML = iftarMin20 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour20;
+                iftarHour[4].innerHTML = iftarHour20;
+                sehriMin__rj.innerHTML = sehriMin20 + 5;
+                iftarMin__rj.innerHTML = iftarMin20 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour20;
+                iftarHour[5].innerHTML = iftarHour20;
+                sehriMin__rn.innerHTML = sehriMin20;
+                iftarMin__rn.innerHTML = iftarMin20;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour20;
+                iftarHour[6].innerHTML = iftarHour20;
+                sehriMin__sl.innerHTML = sehriMin20 - 7;
+                iftarMin__sl.innerHTML = iftarMin20 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour20;
+                iftarHour[7].innerHTML = iftarHour20;
+                sehriMin__ch.innerHTML = sehriMin20 - 2;
+                iftarMin__ch.innerHTML = iftarMin20 - 7;
+            } else if (toDate == ruja21) {
+                ramadanDay.innerHTML = '21th';
+                sehriHour[0].innerHTML = sehriHour21;
+                sehriMin.innerHTML = sehriMin21;
+                iftarHour[0].innerHTML = iftarHour21;
+                iftarMin.innerHTML = iftarMin21;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour21;
+                iftarHour[1].innerHTML = iftarHour21;
+                sehriMin__mym.innerHTML = sehriMin21 - 3;
+                iftarMin__mym.innerHTML = iftarMin21 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour21;
+                iftarHour[2].innerHTML = iftarHour21;
+                sehriMin__bari.innerHTML = sehriMin21 + 2;
+                iftarMin__bari.innerHTML = iftarMin21 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour21;
+                iftarHour[3].innerHTML = iftarHour21;
+                sehriMin__kh.innerHTML = sehriMin21 + 5;
+                iftarMin__kh.innerHTML = iftarMin21 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour21;
+                iftarHour[4].innerHTML = iftarHour21;
+                sehriMin__rj.innerHTML = sehriMin21 + 5;
+                iftarMin__rj.innerHTML = iftarMin21 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour21;
+                iftarHour[5].innerHTML = iftarHour21;
+                sehriMin__rn.innerHTML = sehriMin21;
+                iftarMin__rn.innerHTML = iftarMin21;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour21;
+                iftarHour[6].innerHTML = iftarHour21;
+                sehriMin__sl.innerHTML = sehriMin21 - 7;
+                iftarMin__sl.innerHTML = iftarMin21 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour21;
+                iftarHour[7].innerHTML = iftarHour21;
+                sehriMin__ch.innerHTML = sehriMin21 - 2;
+                iftarMin__ch.innerHTML = iftarMin21 - 7;
+            } else if (toDate == ruja22) {
+                ramadanDay.innerHTML = '22th';
+                sehriHour[0].innerHTML = sehriHour22;
+                sehriMin.innerHTML = sehriMin22;
+                iftarHour[0].innerHTML = iftarHour22;
+                iftarMin.innerHTML = iftarMin22;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour22;
+                iftarHour[1].innerHTML = iftarHour22;
+                sehriMin__mym.innerHTML = sehriMin22 - 3;
+                iftarMin__mym.innerHTML = iftarMin22 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour22;
+                iftarHour[2].innerHTML = iftarHour22;
+                sehriMin__bari.innerHTML = sehriMin22 + 2;
+                iftarMin__bari.innerHTML = iftarMin22 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour22;
+                iftarHour[3].innerHTML = iftarHour22;
+                sehriMin__kh.innerHTML = sehriMin22 + 5;
+                iftarMin__kh.innerHTML = iftarMin22 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour22;
+                iftarHour[4].innerHTML = iftarHour22;
+                sehriMin__rj.innerHTML = sehriMin22 + 5;
+                iftarMin__rj.innerHTML = iftarMin22 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour22;
+                iftarHour[5].innerHTML = iftarHour22;
+                sehriMin__rn.innerHTML = sehriMin22;
+                iftarMin__rn.innerHTML = iftarMin22;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour22;
+                iftarHour[6].innerHTML = iftarHour22;
+                sehriMin__sl.innerHTML = sehriMin22 - 7;
+                iftarMin__sl.innerHTML = iftarMin22 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour22;
+                iftarHour[7].innerHTML = iftarHour22;
+                sehriMin__ch.innerHTML = sehriMin22 - 2;
+                iftarMin__ch.innerHTML = iftarMin22 - 7;
+            } else if (toDate == ruja23) {
+                ramadanDay.innerHTML = '23th';
+                sehriHour[0].innerHTML = sehriHour23;
+                sehriMin.innerHTML = sehriMin23;
+                iftarHour[0].innerHTML = iftarHour23;
+                iftarMin.innerHTML = iftarMin23;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour23;
+                iftarHour[1].innerHTML = iftarHour23;
+                sehriMin__mym.innerHTML = sehriMin23 - 3;
+                iftarMin__mym.innerHTML = iftarMin23 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour23;
+                iftarHour[2].innerHTML = iftarHour23;
+                sehriMin__bari.innerHTML = sehriMin23 + 2;
+                iftarMin__bari.innerHTML = iftarMin23 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour23;
+                iftarHour[3].innerHTML = iftarHour23;
+                sehriMin__kh.innerHTML = sehriMin23 + 5;
+                iftarMin__kh.innerHTML = iftarMin23 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour23;
+                iftarHour[4].innerHTML = iftarHour23;
+                sehriMin__rj.innerHTML = sehriMin23 + 5;
+                iftarMin__rj.innerHTML = iftarMin23 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour23;
+                iftarHour[5].innerHTML = iftarHour23;
+                sehriMin__rn.innerHTML = sehriMin23;
+                iftarMin__rn.innerHTML = iftarMin23;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour23;
+                iftarHour[6].innerHTML = iftarHour23;
+                sehriMin__sl.innerHTML = sehriMin23 - 7;
+                iftarMin__sl.innerHTML = iftarMin23 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour23;
+                iftarHour[7].innerHTML = iftarHour23;
+                sehriMin__ch.innerHTML = sehriMin23 - 2;
+                iftarMin__ch.innerHTML = iftarMin23 - 7;
+            } else if (toDate == ruja24) {
+                ramadanDay.innerHTML = '24th';
+                sehriHour[0].innerHTML = sehriHour24;
+                sehriMin.innerHTML = sehriMin24;
+                iftarHour[0].innerHTML = iftarHour24;
+                iftarMin.innerHTML = iftarMin24;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour24;
+                iftarHour[1].innerHTML = iftarHour24;
+                sehriMin__mym.innerHTML = sehriMin24 - 3;
+                iftarMin__mym.innerHTML = iftarMin24 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour24;
+                iftarHour[2].innerHTML = iftarHour24;
+                sehriMin__bari.innerHTML = sehriMin24 + 2;
+                iftarMin__bari.innerHTML = iftarMin24 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour24;
+                iftarHour[3].innerHTML = iftarHour24;
+                sehriMin__kh.innerHTML = sehriMin24 + 5;
+                iftarMin__kh.innerHTML = iftarMin24 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour24;
+                iftarHour[4].innerHTML = iftarHour24;
+                sehriMin__rj.innerHTML = sehriMin24 + 5;
+                iftarMin__rj.innerHTML = iftarMin24 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour24;
+                iftarHour[5].innerHTML = iftarHour24;
+                sehriMin__rn.innerHTML = sehriMin24;
+                iftarMin__rn.innerHTML = iftarMin24;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour24;
+                iftarHour[6].innerHTML = iftarHour24;
+                sehriMin__sl.innerHTML = sehriMin24 - 7;
+                iftarMin__sl.innerHTML = iftarMin24 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour24;
+                iftarHour[7].innerHTML = iftarHour24;
+                sehriMin__ch.innerHTML = sehriMin24 - 2;
+                iftarMin__ch.innerHTML = iftarMin24 - 7;
+            } else if (toDate == ruja25) {
+                ramadanDay.innerHTML = '25th';
+                sehriHour[0].innerHTML = sehriHour25;
+                sehriMin.innerHTML = sehriMin25;
+                iftarHour[0].innerHTML = iftarHour25;
+                iftarMin.innerHTML = iftarMin25;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour25;
+                iftarHour[1].innerHTML = iftarHour25;
+                sehriMin__mym.innerHTML = sehriMin25 - 3;
+                iftarMin__mym.innerHTML = iftarMin25 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour25;
+                iftarHour[2].innerHTML = iftarHour25;
+                sehriMin__bari.innerHTML = sehriMin25 + 2;
+                iftarMin__bari.innerHTML = iftarMin25 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour25;
+                iftarHour[3].innerHTML = iftarHour25;
+                sehriMin__kh.innerHTML = sehriMin25 + 5;
+                iftarMin__kh.innerHTML = iftarMin25 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour25;
+                iftarHour[4].innerHTML = iftarHour25;
+                sehriMin__rj.innerHTML = sehriMin25 + 5;
+                iftarMin__rj.innerHTML = iftarMin25 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour25;
+                iftarHour[5].innerHTML = iftarHour25;
+                sehriMin__rn.innerHTML = sehriMin25;
+                iftarMin__rn.innerHTML = iftarMin25;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour25;
+                iftarHour[6].innerHTML = iftarHour25;
+                sehriMin__sl.innerHTML = sehriMin25 - 7;
+                iftarMin__sl.innerHTML = iftarMin25 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour25;
+                iftarHour[7].innerHTML = iftarHour25;
+                sehriMin__ch.innerHTML = sehriMin25 - 2;
+                iftarMin__ch.innerHTML = iftarMin25 - 7;
+            } else if (toDate == ruja26) {
+                ramadanDay.innerHTML = '26th';
+                sehriHour[0].innerHTML = sehriHour26;
+                sehriMin.innerHTML = sehriMin26;
+                iftarHour[0].innerHTML = iftarHour26;
+                iftarMin.innerHTML = iftarMin26;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour26;
+                iftarHour[1].innerHTML = iftarHour26;
+                sehriMin__mym.innerHTML = sehriMin26 - 3;
+                iftarMin__mym.innerHTML = iftarMin26 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour26;
+                iftarHour[2].innerHTML = iftarHour26;
+                sehriMin__bari.innerHTML = sehriMin26 + 2;
+                iftarMin__bari.innerHTML = iftarMin26 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour26;
+                iftarHour[3].innerHTML = iftarHour26;
+                sehriMin__kh.innerHTML = sehriMin26 + 5;
+                iftarMin__kh.innerHTML = iftarMin26 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour26;
+                iftarHour[4].innerHTML = iftarHour26;
+                sehriMin__rj.innerHTML = sehriMin26 + 5;
+                iftarMin__rj.innerHTML = iftarMin26 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour26;
+                iftarHour[5].innerHTML = iftarHour26;
+                sehriMin__rn.innerHTML = sehriMin26;
+                iftarMin__rn.innerHTML = iftarMin26;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour26;
+                iftarHour[6].innerHTML = iftarHour26;
+                sehriMin__sl.innerHTML = sehriMin26 - 7;
+                iftarMin__sl.innerHTML = iftarMin26 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour26;
+                iftarHour[7].innerHTML = iftarHour26;
+                sehriMin__ch.innerHTML = sehriMin26 - 2;
+                iftarMin__ch.innerHTML = iftarMin26 - 7;
+            } else if (toDate == ruja27) {
+                ramadanDay.innerHTML = '27th';
+                sehriHour[0].innerHTML = sehriHour27;
+                sehriMin.innerHTML = sehriMin27;
+                iftarHour[0].innerHTML = iftarHour27;
+                iftarMin.innerHTML = iftarMin27;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour27;
+                iftarHour[1].innerHTML = iftarHour27;
+                sehriMin__mym.innerHTML = sehriMin27 - 3;
+                iftarMin__mym.innerHTML = iftarMin27 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour27;
+                iftarHour[2].innerHTML = iftarHour27;
+                sehriMin__bari.innerHTML = sehriMin27 + 2;
+                iftarMin__bari.innerHTML = iftarMin27 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour27;
+                iftarHour[3].innerHTML = iftarHour27;
+                sehriMin__kh.innerHTML = sehriMin27 + 5;
+                iftarMin__kh.innerHTML = iftarMin27 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour27;
+                iftarHour[4].innerHTML = iftarHour27;
+                sehriMin__rj.innerHTML = sehriMin27 + 5;
+                iftarMin__rj.innerHTML = iftarMin27 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour27;
+                iftarHour[5].innerHTML = iftarHour27;
+                sehriMin__rn.innerHTML = sehriMin27;
+                iftarMin__rn.innerHTML = iftarMin27;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour27;
+                iftarHour[6].innerHTML = iftarHour27;
+                sehriMin__sl.innerHTML = sehriMin27 - 7;
+                iftarMin__sl.innerHTML = iftarMin27 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour27;
+                iftarHour[7].innerHTML = iftarHour27;
+                sehriMin__ch.innerHTML = sehriMin27 - 2;
+                iftarMin__ch.innerHTML = iftarMin27 - 7;
+            } else if (toDate == ruja28) {
+                ramadanDay.innerHTML = '28th';
+                sehriHour[0].innerHTML = sehriHour28;
+                sehriMin.innerHTML = sehriMin28;
+                iftarHour[0].innerHTML = iftarHour28;
+                iftarMin.innerHTML = iftarMin28;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour28;
+                iftarHour[1].innerHTML = iftarHour28;
+                sehriMin__mym.innerHTML = sehriMin28 - 3;
+                iftarMin__mym.innerHTML = iftarMin28 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour28;
+                iftarHour[2].innerHTML = iftarHour28;
+                sehriMin__bari.innerHTML = sehriMin28 + 2;
+                iftarMin__bari.innerHTML = iftarMin28 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour28;
+                iftarHour[3].innerHTML = iftarHour28;
+                sehriMin__kh.innerHTML = sehriMin28 + 5;
+                iftarMin__kh.innerHTML = iftarMin28 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour28;
+                iftarHour[4].innerHTML = iftarHour28;
+                sehriMin__rj.innerHTML = sehriMin28 + 5;
+                iftarMin__rj.innerHTML = iftarMin28 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour28;
+                iftarHour[5].innerHTML = iftarHour28;
+                sehriMin__rn.innerHTML = sehriMin28;
+                iftarMin__rn.innerHTML = iftarMin28;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour28;
+                iftarHour[6].innerHTML = iftarHour28;
+                sehriMin__sl.innerHTML = sehriMin28 - 7;
+                iftarMin__sl.innerHTML = iftarMin28 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour28;
+                iftarHour[7].innerHTML = iftarHour28;
+                sehriMin__ch.innerHTML = sehriMin28 - 2;
+                iftarMin__ch.innerHTML = iftarMin28 - 7;
+            } else if (toDate == ruja29) {
+                ramadanDay.innerHTML = '29th';
+                sehriHour[0].innerHTML = sehriHour29;
+                sehriMin.innerHTML = sehriMin29;
+                iftarHour[0].innerHTML = iftarHour29;
+                iftarMin.innerHTML = iftarMin29;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour29;
+                iftarHour[1].innerHTML = iftarHour29;
+                sehriMin__mym.innerHTML = sehriMin29 - 3;
+                iftarMin__mym.innerHTML = iftarMin29 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour29;
+                iftarHour[2].innerHTML = iftarHour29;
+                sehriMin__bari.innerHTML = sehriMin29 + 2;
+                iftarMin__bari.innerHTML = iftarMin29 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour29;
+                iftarHour[3].innerHTML = iftarHour29;
+                sehriMin__kh.innerHTML = sehriMin29 + 5;
+                iftarMin__kh.innerHTML = iftarMin29 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour29;
+                iftarHour[4].innerHTML = iftarHour29;
+                sehriMin__rj.innerHTML = sehriMin29 + 5;
+                iftarMin__rj.innerHTML = iftarMin29 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour29;
+                iftarHour[5].innerHTML = iftarHour29;
+                sehriMin__rn.innerHTML = sehriMin29;
+                iftarMin__rn.innerHTML = iftarMin29;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour29;
+                iftarHour[6].innerHTML = iftarHour29;
+                sehriMin__sl.innerHTML = sehriMin29 - 7;
+                iftarMin__sl.innerHTML = iftarMin29 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour29;
+                iftarHour[7].innerHTML = iftarHour29;
+                sehriMin__ch.innerHTML = sehriMin29 - 2;
+                iftarMin__ch.innerHTML = iftarMin29 - 7;
+            } else if (toDate == ruja30) {
+                ramadanDay.innerHTML = '30th';
+                sehriHour[0].innerHTML = sehriHour30;
+                sehriMin.innerHTML = sehriMin30;
+                iftarHour[0].innerHTML = iftarHour30;
+                iftarMin.innerHTML = iftarMin30;
+            
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour30;
+                iftarHour[1].innerHTML = iftarHour30;
+                sehriMin__mym.innerHTML = sehriMin30 - 3;
+                iftarMin__mym.innerHTML = iftarMin30 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour30;
+                iftarHour[2].innerHTML = iftarHour30;
+                sehriMin__bari.innerHTML = sehriMin30 + 2;
+                iftarMin__bari.innerHTML = iftarMin30 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour30;
+                iftarHour[3].innerHTML = iftarHour30;
+                sehriMin__kh.innerHTML = sehriMin30 + 5;
+                iftarMin__kh.innerHTML = iftarMin30 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour30;
+                iftarHour[4].innerHTML = iftarHour30;
+                sehriMin__rj.innerHTML = sehriMin30 + 5;
+                iftarMin__rj.innerHTML = iftarMin30 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour30;
+                iftarHour[5].innerHTML = iftarHour30;
+                sehriMin__rn.innerHTML = sehriMin30;
+                iftarMin__rn.innerHTML = iftarMin30;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour30;
+                iftarHour[6].innerHTML = iftarHour30;
+                sehriMin__sl.innerHTML = sehriMin30 - 7;
+                iftarMin__sl.innerHTML = iftarMin30 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour30;
+                iftarHour[7].innerHTML = iftarHour30;
+                sehriMin__ch.innerHTML = sehriMin30 - 2;
+                iftarMin__ch.innerHTML = iftarMin30 - 7;
+            } else if (toDate == eidDate) {
+                document.getElementById('eid__welcome').style.display = "block";
+                document.getElementById('ramadan').style.display = "none";
+                document.getElementById('duwa').style.display = "none";
+            } else {
+                document.getElementById('ramadan').style.display = "none";
+                document.getElementById('duwa').style.display = "none";
+                document.getElementById('others').style.display = "block";
+            }
+
+        } else if (thisMonth == 3 ) {
+            document.getElementById('title__month').innerHTML = 'April';
+
+            // * Times * //
+
+            if (toDate == ruja1) {
+                ramadanDay.innerHTML = '1st';
+                sehriHour[0].innerHTML = sehriHour1;
+                sehriMin.innerHTML = sehriMin1;
+                iftarHour[0].innerHTML = iftarHour1;
+                iftarMin.innerHTML = iftarMin1;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour1;
+                iftarHour[1].innerHTML = iftarHour1;
+                sehriMin__mym.innerHTML = sehriMin1 - 3;
+                iftarMin__mym.innerHTML = iftarMin1 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour1;
+                iftarHour[2].innerHTML = iftarHour1;
+                sehriMin__bari.innerHTML = sehriMin1 + 2;
+                iftarMin__bari.innerHTML = iftarMin1 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour1;
+                iftarHour[3].innerHTML = iftarHour1;
+                sehriMin__kh.innerHTML = sehriMin1 + 5;
+                iftarMin__kh.innerHTML = iftarMin1 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour1;
+                iftarHour[4].innerHTML = iftarHour1;
+                sehriMin__rj.innerHTML = sehriMin1 + 5;
+                iftarMin__rj.innerHTML = iftarMin1 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour1;
+                iftarHour[5].innerHTML = iftarHour1;
+                sehriMin__rn.innerHTML = sehriMin1;
+                iftarMin__rn.innerHTML = iftarMin1;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour1;
+                iftarHour[6].innerHTML = iftarHour1;
+                sehriMin__sl.innerHTML = sehriMin1 - 7;
+                iftarMin__sl.innerHTML = iftarMin1 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour1;
+                iftarHour[7].innerHTML = iftarHour1;
+                sehriMin__ch.innerHTML = sehriMin1 - 2;
+                iftarMin__ch.innerHTML = iftarMin1 - 7;
+
+            } else if (toDate == ruja2) {
+                ramadanDay.innerHTML = '2nd';
+                sehriHour[0].innerHTML = sehriHour2;
+                sehriMin.innerHTML = sehriMin2;
+                iftarHour[0].innerHTML = iftarHour2;
+                iftarMin.innerHTML = iftarMin2;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour2;
+                iftarHour[1].innerHTML = iftarHour2;
+                sehriMin__mym.innerHTML = sehriMin2 - 3;
+                iftarMin__mym.innerHTML = iftarMin2 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour2;
+                iftarHour[2].innerHTML = iftarHour2;
+                sehriMin__bari.innerHTML = sehriMin2 + 2;
+                iftarMin__bari.innerHTML = iftarMin2 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour2;
+                iftarHour[3].innerHTML = iftarHour2;
+                sehriMin__kh.innerHTML = sehriMin2 + 5;
+                iftarMin__kh.innerHTML = iftarMin2 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour2;
+                iftarHour[4].innerHTML = iftarHour2;
+                sehriMin__rj.innerHTML = sehriMin2 + 5;
+                iftarMin__rj.innerHTML = iftarMin2 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour2;
+                iftarHour[5].innerHTML = iftarHour2;
+                sehriMin__rn.innerHTML = sehriMin2;
+                iftarMin__rn.innerHTML = iftarMin2;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour2;
+                iftarHour[6].innerHTML = iftarHour2;
+                sehriMin__sl.innerHTML = sehriMin2 - 7;
+                iftarMin__sl.innerHTML = iftarMin2 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour2;
+                iftarHour[7].innerHTML = iftarHour2;
+                sehriMin__ch.innerHTML = sehriMin2 - 2;
+                iftarMin__ch.innerHTML = iftarMin2 - 7;
+
+            } else if (toDate == ruja3) {
+                ramadanDay.innerHTML = '3rd';
+                sehriHour[0].innerHTML = sehriHour3;
+                sehriMin.innerHTML = sehriMin3;
+                iftarHour[0].innerHTML = iftarHour3;
+                iftarMin.innerHTML = iftarMin3;
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour3;
+                iftarHour[1].innerHTML = iftarHour3;
+                sehriMin__mym.innerHTML = sehriMin3 - 3;
+                iftarMin__mym.innerHTML = iftarMin3 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour3;
+                iftarHour[2].innerHTML = iftarHour3;
+                sehriMin__bari.innerHTML = sehriMin3 + 2;
+                iftarMin__bari.innerHTML = iftarMin3 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour3;
+                iftarHour[3].innerHTML = iftarHour3;
+                sehriMin__kh.innerHTML = sehriMin3 + 5;
+                iftarMin__kh.innerHTML = iftarMin3 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour3;
+                iftarHour[4].innerHTML = iftarHour3;
+                sehriMin__rj.innerHTML = sehriMin3 + 5;
+                iftarMin__rj.innerHTML = iftarMin3 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour3;
+                iftarHour[5].innerHTML = iftarHour3;
+                sehriMin__rn.innerHTML = sehriMin3;
+                iftarMin__rn.innerHTML = iftarMin3;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour3;
+                iftarHour[6].innerHTML = iftarHour3;
+                sehriMin__sl.innerHTML = sehriMin3 - 7;
+                iftarMin__sl.innerHTML = iftarMin3 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour3;
+                iftarHour[7].innerHTML = iftarHour3;
+                sehriMin__ch.innerHTML = sehriMin3 - 2;
+                iftarMin__ch.innerHTML = iftarMin3 - 7;
+
+            } else if (toDate == ruja4) {
+                ramadanDay.innerHTML = '4th';
+                sehriHour[0].innerHTML = sehriHour4;
+                sehriMin.innerHTML = sehriMin4;
+                iftarHour[0].innerHTML = iftarHour4;
+                iftarMin.innerHTML = iftarMin4;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour4;
+                iftarHour[1].innerHTML = iftarHour4;
+                sehriMin__mym.innerHTML = sehriMin4 - 3;
+                iftarMin__mym.innerHTML = iftarMin4 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour4;
+                iftarHour[2].innerHTML = iftarHour4;
+                sehriMin__bari.innerHTML = sehriMin4 + 2;
+                iftarMin__bari.innerHTML = iftarMin4 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour4;
+                iftarHour[3].innerHTML = iftarHour4;
+                sehriMin__kh.innerHTML = sehriMin4 + 5;
+                iftarMin__kh.innerHTML = iftarMin4 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour4;
+                iftarHour[4].innerHTML = iftarHour4;
+                sehriMin__rj.innerHTML = sehriMin4 + 5;
+                iftarMin__rj.innerHTML = iftarMin4 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour4;
+                iftarHour[5].innerHTML = iftarHour4;
+                sehriMin__rn.innerHTML = sehriMin4;
+                iftarMin__rn.innerHTML = iftarMin4;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour4;
+                iftarHour[6].innerHTML = iftarHour4;
+                sehriMin__sl.innerHTML = sehriMin4 - 7;
+                iftarMin__sl.innerHTML = iftarMin4 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour4;
+                iftarHour[7].innerHTML = iftarHour4;
+                sehriMin__ch.innerHTML = sehriMin4 - 2;
+                iftarMin__ch.innerHTML = iftarMin4 - 7;
+
+            } else if (toDate == ruja5) {
+                ramadanDay.innerHTML = '5th';
+                sehriHour[0].innerHTML = sehriHour5;
+                sehriMin.innerHTML = sehriMin5;
+                iftarHour[0].innerHTML = iftarHour5;
+                iftarMin.innerHTML = iftarMin5;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour5;
+                iftarHour[1].innerHTML = iftarHour5;
+                sehriMin__mym.innerHTML = sehriMin5 - 3;
+                iftarMin__mym.innerHTML = iftarMin5 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour5;
+                iftarHour[2].innerHTML = iftarHour5;
+                sehriMin__bari.innerHTML = sehriMin5 + 2;
+                iftarMin__bari.innerHTML = iftarMin5 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour5;
+                iftarHour[3].innerHTML = iftarHour5;
+                sehriMin__kh.innerHTML = sehriMin5 + 5;
+                iftarMin__kh.innerHTML = iftarMin5 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour5;
+                iftarHour[4].innerHTML = iftarHour5;
+                sehriMin__rj.innerHTML = sehriMin5 + 5;
+                iftarMin__rj.innerHTML = iftarMin5 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour5;
+                iftarHour[5].innerHTML = iftarHour5;
+                sehriMin__rn.innerHTML = sehriMin5;
+                iftarMin__rn.innerHTML = iftarMin5;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour5;
+                iftarHour[6].innerHTML = iftarHour5;
+                sehriMin__sl.innerHTML = sehriMin5 - 7;
+                iftarMin__sl.innerHTML = iftarMin5 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour5;
+                iftarHour[7].innerHTML = iftarHour5;
+                sehriMin__ch.innerHTML = sehriMin5 - 2;
+                iftarMin__ch.innerHTML = iftarMin5 - 7;
+
+            } else if (toDate == ruja6) {
+                ramadanDay.innerHTML = '6th';
+                sehriHour[0].innerHTML = sehriHour6;
+                sehriMin.innerHTML = sehriMin6;
+                iftarHour[0].innerHTML = iftarHour6;
+                iftarMin.innerHTML = iftarMin6;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour6;
+                iftarHour[1].innerHTML = iftarHour6;
+                sehriMin__mym.innerHTML = sehriMin6 - 3;
+                iftarMin__mym.innerHTML = iftarMin6 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour6;
+                iftarHour[2].innerHTML = iftarHour6;
+                sehriMin__bari.innerHTML = sehriMin6 + 2;
+                iftarMin__bari.innerHTML = iftarMin6 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour6;
+                iftarHour[3].innerHTML = iftarHour6;
+                sehriMin__kh.innerHTML = sehriMin6 + 5;
+                iftarMin__kh.innerHTML = iftarMin6 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour6;
+                iftarHour[4].innerHTML = iftarHour6;
+                sehriMin__rj.innerHTML = sehriMin6 + 5;
+                iftarMin__rj.innerHTML = iftarMin6 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour6;
+                iftarHour[5].innerHTML = iftarHour6;
+                sehriMin__rn.innerHTML = sehriMin6;
+                iftarMin__rn.innerHTML = iftarMin6;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour6;
+                iftarHour[6].innerHTML = iftarHour6;
+                sehriMin__sl.innerHTML = sehriMin6 - 7;
+                iftarMin__sl.innerHTML = iftarMin6 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour6;
+                iftarHour[7].innerHTML = iftarHour6;
+                sehriMin__ch.innerHTML = sehriMin6 - 2;
+                iftarMin__ch.innerHTML = iftarMin6 - 7;
+
+            } else if (toDate == ruja7) {
+                ramadanDay.innerHTML = '7th';
+                sehriHour[0].innerHTML = sehriHour7;
+                sehriMin.innerHTML = sehriMin7;
+                iftarHour[0].innerHTML = iftarHour7;
+                iftarMin.innerHTML = iftarMin7;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour7;
+                iftarHour[1].innerHTML = iftarHour7;
+                sehriMin__mym.innerHTML = sehriMin7 - 3;
+                iftarMin__mym.innerHTML = iftarMin7 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour7;
+                iftarHour[2].innerHTML = iftarHour7;
+                sehriMin__bari.innerHTML = sehriMin7 + 2;
+                iftarMin__bari.innerHTML = iftarMin7 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour7;
+                iftarHour[3].innerHTML = iftarHour7;
+                sehriMin__kh.innerHTML = sehriMin7 + 5;
+                iftarMin__kh.innerHTML = iftarMin7 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour7;
+                iftarHour[4].innerHTML = iftarHour7;
+                sehriMin__rj.innerHTML = sehriMin7 + 5;
+                iftarMin__rj.innerHTML = iftarMin7 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour7;
+                iftarHour[5].innerHTML = iftarHour7;
+                sehriMin__rn.innerHTML = sehriMin7;
+                iftarMin__rn.innerHTML = iftarMin7;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour7;
+                iftarHour[6].innerHTML = iftarHour7;
+                sehriMin__sl.innerHTML = sehriMin7 - 7;
+                iftarMin__sl.innerHTML = iftarMin7 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour7;
+                iftarHour[7].innerHTML = iftarHour7;
+                sehriMin__ch.innerHTML = sehriMin7 - 2;
+                iftarMin__ch.innerHTML = iftarMin7 - 7;
+
+            } else if (toDate == ruja8) {
+                ramadanDay.innerHTML = '8th';
+                sehriHour[0].innerHTML = sehriHour8;
+                sehriMin.innerHTML = sehriMin8;
+                iftarHour[0].innerHTML = iftarHour8;
+                iftarMin.innerHTML = iftarMin8;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour8;
+                iftarHour[1].innerHTML = iftarHour8;
+                sehriMin__mym.innerHTML = sehriMin8 - 3;
+                iftarMin__mym.innerHTML = iftarMin8 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour8;
+                iftarHour[2].innerHTML = iftarHour8;
+                sehriMin__bari.innerHTML = sehriMin8 + 2;
+                iftarMin__bari.innerHTML = iftarMin8 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour8;
+                iftarHour[3].innerHTML = iftarHour8;
+                sehriMin__kh.innerHTML = sehriMin8 + 5;
+                iftarMin__kh.innerHTML = iftarMin8 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour8;
+                iftarHour[4].innerHTML = iftarHour8;
+                sehriMin__rj.innerHTML = sehriMin8 + 5;
+                iftarMin__rj.innerHTML = iftarMin8 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour8;
+                iftarHour[5].innerHTML = iftarHour8;
+                sehriMin__rn.innerHTML = sehriMin8;
+                iftarMin__rn.innerHTML = iftarMin8;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour8;
+                iftarHour[6].innerHTML = iftarHour8;
+                sehriMin__sl.innerHTML = sehriMin8 - 7;
+                iftarMin__sl.innerHTML = iftarMin8 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour8;
+                iftarHour[7].innerHTML = iftarHour8;
+                sehriMin__ch.innerHTML = sehriMin8 - 2;
+                iftarMin__ch.innerHTML = iftarMin8 - 7;
+            } else if (toDate == ruja9) {
+                ramadanDay.innerHTML = '9th';
+                sehriHour[0].innerHTML = sehriHour9;
+                sehriMin.innerHTML = sehriMin9;
+                iftarHour[0].innerHTML = iftarHour9;
+                iftarMin.innerHTML = iftarMin9;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour9;
+                iftarHour[1].innerHTML = iftarHour9;
+                sehriMin__mym.innerHTML = sehriMin9 - 3;
+                iftarMin__mym.innerHTML = iftarMin9 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour9;
+                iftarHour[2].innerHTML = iftarHour9;
+                sehriMin__bari.innerHTML = sehriMin9 + 2;
+                iftarMin__bari.innerHTML = iftarMin9 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour9;
+                iftarHour[3].innerHTML = iftarHour9;
+                sehriMin__kh.innerHTML = sehriMin9 + 5;
+                iftarMin__kh.innerHTML = iftarMin9 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour9;
+                iftarHour[4].innerHTML = iftarHour9;
+                sehriMin__rj.innerHTML = sehriMin9 + 5;
+                iftarMin__rj.innerHTML = iftarMin9 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour9;
+                iftarHour[5].innerHTML = iftarHour9;
+                sehriMin__rn.innerHTML = sehriMin9;
+                iftarMin__rn.innerHTML = iftarMin9;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour9;
+                iftarHour[6].innerHTML = iftarHour9;
+                sehriMin__sl.innerHTML = sehriMin9 - 7;
+                iftarMin__sl.innerHTML = iftarMin9 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour9;
+                iftarHour[7].innerHTML = iftarHour9;
+                sehriMin__ch.innerHTML = sehriMin9 - 2;
+                iftarMin__ch.innerHTML = iftarMin9 - 7;
+            } else if (toDate == ruja10) {
+                ramadanDay.innerHTML = '10th';
+                sehriHour[0].innerHTML = sehriHour10;
+                sehriMin.innerHTML = sehriMin10;
+                iftarHour[0].innerHTML = iftarHour10;
+                iftarMin.innerHTML = iftarMin10;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour10;
+                iftarHour[1].innerHTML = iftarHour10;
+                sehriMin__mym.innerHTML = sehriMin10 - 3;
+                iftarMin__mym.innerHTML = iftarMin10 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour10;
+                iftarHour[2].innerHTML = iftarHour10;
+                sehriMin__bari.innerHTML = sehriMin10 + 2;
+                iftarMin__bari.innerHTML = iftarMin10 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour10;
+                iftarHour[3].innerHTML = iftarHour10;
+                sehriMin__kh.innerHTML = sehriMin10 + 5;
+                iftarMin__kh.innerHTML = iftarMin10 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour10;
+                iftarHour[4].innerHTML = iftarHour10;
+                sehriMin__rj.innerHTML = sehriMin10 + 5;
+                iftarMin__rj.innerHTML = iftarMin10 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour10;
+                iftarHour[5].innerHTML = iftarHour10;
+                sehriMin__rn.innerHTML = sehriMin10;
+                iftarMin__rn.innerHTML = iftarMin10;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour10;
+                iftarHour[6].innerHTML = iftarHour10;
+                sehriMin__sl.innerHTML = sehriMin10 - 7;
+                iftarMin__sl.innerHTML = iftarMin10 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour10;
+                iftarHour[7].innerHTML = iftarHour10;
+                sehriMin__ch.innerHTML = sehriMin10 - 2;
+                iftarMin__ch.innerHTML = iftarMin10 - 7;
+            } else if (toDate == ruja11) {
+                ramadanDay.innerHTML = '11th';
+                sehriHour[0].innerHTML = sehriHour11;
+                sehriMin.innerHTML = sehriMin11;
+                iftarHour[0].innerHTML = iftarHour11;
+                iftarMin.innerHTML = iftarMin11;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour11;
+                iftarHour[1].innerHTML = iftarHour11;
+                sehriMin__mym.innerHTML = sehriMin11 - 3;
+                iftarMin__mym.innerHTML = iftarMin11 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour11;
+                iftarHour[2].innerHTML = iftarHour11;
+                sehriMin__bari.innerHTML = sehriMin11 + 2;
+                iftarMin__bari.innerHTML = iftarMin11 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour11;
+                iftarHour[3].innerHTML = iftarHour11;
+                sehriMin__kh.innerHTML = sehriMin11 + 5;
+                iftarMin__kh.innerHTML = iftarMin11 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour11;
+                iftarHour[4].innerHTML = iftarHour11;
+                sehriMin__rj.innerHTML = sehriMin11 + 5;
+                iftarMin__rj.innerHTML = iftarMin11 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour11;
+                iftarHour[5].innerHTML = iftarHour11;
+                sehriMin__rn.innerHTML = sehriMin11;
+                iftarMin__rn.innerHTML = iftarMin11;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour11;
+                iftarHour[6].innerHTML = iftarHour11;
+                sehriMin__sl.innerHTML = sehriMin11 - 7;
+                iftarMin__sl.innerHTML = iftarMin11 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour11;
+                iftarHour[7].innerHTML = iftarHour11;
+                sehriMin__ch.innerHTML = sehriMin11 - 2;
+                iftarMin__ch.innerHTML = iftarMin11 - 7;
+            } else if (toDate == ruja12) {
+                ramadanDay.innerHTML = '12th';
+                sehriHour[0].innerHTML = sehriHour12;
+                sehriMin.innerHTML = sehriMin12;
+                iftarHour[0].innerHTML = iftarHour12;
+                iftarMin.innerHTML = iftarMin12;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour12;
+                iftarHour[1].innerHTML = iftarHour12;
+                sehriMin__mym.innerHTML = sehriMin12 - 3;
+                iftarMin__mym.innerHTML = iftarMin12 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour12;
+                iftarHour[2].innerHTML = iftarHour12;
+                sehriMin__bari.innerHTML = sehriMin12 + 2;
+                iftarMin__bari.innerHTML = iftarMin12 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour12;
+                iftarHour[3].innerHTML = iftarHour12;
+                sehriMin__kh.innerHTML = sehriMin12 + 5;
+                iftarMin__kh.innerHTML = iftarMin12 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour12;
+                iftarHour[4].innerHTML = iftarHour12;
+                sehriMin__rj.innerHTML = sehriMin12 + 5;
+                iftarMin__rj.innerHTML = iftarMin12 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour12;
+                iftarHour[5].innerHTML = iftarHour12;
+                sehriMin__rn.innerHTML = sehriMin12;
+                iftarMin__rn.innerHTML = iftarMin12;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour12;
+                iftarHour[6].innerHTML = iftarHour12;
+                sehriMin__sl.innerHTML = sehriMin12 - 7;
+                iftarMin__sl.innerHTML = iftarMin12 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour12;
+                iftarHour[7].innerHTML = iftarHour12;
+                sehriMin__ch.innerHTML = sehriMin12 - 2;
+                iftarMin__ch.innerHTML = iftarMin12 - 7;
+            } else if (toDate == ruja13) {
+                ramadanDay.innerHTML = '13th';
+                sehriHour[0].innerHTML = sehriHour13;
+                sehriMin.innerHTML = sehriMin13;
+                iftarHour[0].innerHTML = iftarHour13;
+                iftarMin.innerHTML = iftarMin13;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour13;
+                iftarHour[1].innerHTML = iftarHour13;
+                sehriMin__mym.innerHTML = sehriMin13 - 3;
+                iftarMin__mym.innerHTML = iftarMin13 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour13;
+                iftarHour[2].innerHTML = iftarHour13;
+                sehriMin__bari.innerHTML = sehriMin13 + 2;
+                iftarMin__bari.innerHTML = iftarMin13 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour13;
+                iftarHour[3].innerHTML = iftarHour13;
+                sehriMin__kh.innerHTML = sehriMin13 + 5;
+                iftarMin__kh.innerHTML = iftarMin13 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour13;
+                iftarHour[4].innerHTML = iftarHour13;
+                sehriMin__rj.innerHTML = sehriMin13 + 5;
+                iftarMin__rj.innerHTML = iftarMin13 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour13;
+                iftarHour[5].innerHTML = iftarHour13;
+                sehriMin__rn.innerHTML = sehriMin13;
+                iftarMin__rn.innerHTML = iftarMin13;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour13;
+                iftarHour[6].innerHTML = iftarHour13;
+                sehriMin__sl.innerHTML = sehriMin13 - 7;
+                iftarMin__sl.innerHTML = iftarMin13 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour13;
+                iftarHour[7].innerHTML = iftarHour13;
+                sehriMin__ch.innerHTML = sehriMin13 - 2;
+                iftarMin__ch.innerHTML = iftarMin13 - 7;
+            } else if (toDate == ruja14) {
+                ramadanDay.innerHTML = '14th';
+                sehriHour[0].innerHTML = sehriHour14;
+                sehriMin.innerHTML = sehriMin14;
+                iftarHour[0].innerHTML = iftarHour14;
+                iftarMin.innerHTML = iftarMin14;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour14;
+                iftarHour[1].innerHTML = iftarHour14;
+                sehriMin__mym.innerHTML = sehriMin14 - 3;
+                iftarMin__mym.innerHTML = iftarMin14 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour14;
+                iftarHour[2].innerHTML = iftarHour14;
+                sehriMin__bari.innerHTML = sehriMin14 + 2;
+                iftarMin__bari.innerHTML = iftarMin14 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour14;
+                iftarHour[3].innerHTML = iftarHour14;
+                sehriMin__kh.innerHTML = sehriMin14 + 5;
+                iftarMin__kh.innerHTML = iftarMin14 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour14;
+                iftarHour[4].innerHTML = iftarHour14;
+                sehriMin__rj.innerHTML = sehriMin14 + 5;
+                iftarMin__rj.innerHTML = iftarMin14 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour14;
+                iftarHour[5].innerHTML = iftarHour14;
+                sehriMin__rn.innerHTML = sehriMin14;
+                iftarMin__rn.innerHTML = iftarMin14;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour14;
+                iftarHour[6].innerHTML = iftarHour14;
+                sehriMin__sl.innerHTML = sehriMin14 - 7;
+                iftarMin__sl.innerHTML = iftarMin14 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour14;
+                iftarHour[7].innerHTML = iftarHour14;
+                sehriMin__ch.innerHTML = sehriMin14 - 2;
+                iftarMin__ch.innerHTML = iftarMin14 - 7;
+            } else if (toDate == ruja15) {
+                ramadanDay.innerHTML = '15th';
+                sehriHour[0].innerHTML = sehriHour15;
+                sehriMin.innerHTML = sehriMin15;
+                iftarHour[0].innerHTML = iftarHour15;
+                iftarMin.innerHTML = iftarMin15;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour15;
+                iftarHour[1].innerHTML = iftarHour15;
+                sehriMin__mym.innerHTML = sehriMin15 - 3;
+                iftarMin__mym.innerHTML = iftarMin15 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour15;
+                iftarHour[2].innerHTML = iftarHour15;
+                sehriMin__bari.innerHTML = sehriMin15 + 2;
+                iftarMin__bari.innerHTML = iftarMin15 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour15;
+                iftarHour[3].innerHTML = iftarHour15;
+                sehriMin__kh.innerHTML = sehriMin15 + 5;
+                iftarMin__kh.innerHTML = iftarMin15 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour15;
+                iftarHour[4].innerHTML = iftarHour15;
+                sehriMin__rj.innerHTML = sehriMin15 + 5;
+                iftarMin__rj.innerHTML = iftarMin15 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour15;
+                iftarHour[5].innerHTML = iftarHour15;
+                sehriMin__rn.innerHTML = sehriMin15;
+                iftarMin__rn.innerHTML = iftarMin15;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour15;
+                iftarHour[6].innerHTML = iftarHour15;
+                sehriMin__sl.innerHTML = sehriMin15 - 7;
+                iftarMin__sl.innerHTML = iftarMin15 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour15;
+                iftarHour[7].innerHTML = iftarHour15;
+                sehriMin__ch.innerHTML = sehriMin15 - 2;
+                iftarMin__ch.innerHTML = iftarMin15 - 7;
+            } else if (toDate == ruja16) {
+                ramadanDay.innerHTML = '16th';
+                sehriHour[0].innerHTML = sehriHour16;
+                sehriMin.innerHTML = sehriMin16;
+                iftarHour[0].innerHTML = iftarHour16;
+                iftarMin.innerHTML = iftarMin16;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour16;
+                iftarHour[1].innerHTML = iftarHour16;
+                sehriMin__mym.innerHTML = sehriMin16 - 3;
+                iftarMin__mym.innerHTML = iftarMin16 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour16;
+                iftarHour[2].innerHTML = iftarHour16;
+                sehriMin__bari.innerHTML = sehriMin16 + 2;
+                iftarMin__bari.innerHTML = iftarMin16 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour16;
+                iftarHour[3].innerHTML = iftarHour16;
+                sehriMin__kh.innerHTML = sehriMin16 + 5;
+                iftarMin__kh.innerHTML = iftarMin16 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour16;
+                iftarHour[4].innerHTML = iftarHour16;
+                sehriMin__rj.innerHTML = sehriMin16 + 5;
+                iftarMin__rj.innerHTML = iftarMin16 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour16;
+                iftarHour[5].innerHTML = iftarHour16;
+                sehriMin__rn.innerHTML = sehriMin16;
+                iftarMin__rn.innerHTML = iftarMin16;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour16;
+                iftarHour[6].innerHTML = iftarHour16;
+                sehriMin__sl.innerHTML = sehriMin16 - 7;
+                iftarMin__sl.innerHTML = iftarMin16 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour16;
+                iftarHour[7].innerHTML = iftarHour16;
+                sehriMin__ch.innerHTML = sehriMin16 - 2;
+                iftarMin__ch.innerHTML = iftarMin16 - 7;
+            } else if (toDate == ruja17) {
+                ramadanDay.innerHTML = '17th';
+                sehriHour[0].innerHTML = sehriHour17;
+                sehriMin.innerHTML = sehriMin17;
+                iftarHour[0].innerHTML = iftarHour17;
+                iftarMin.innerHTML = iftarMin17;
+
+                // Mymensingh Division
+                sehriHour[1].innerHTML = sehriHour17;
+                iftarHour[1].innerHTML = iftarHour17;
+                sehriMin__mym.innerHTML = sehriMin17 - 3;
+                iftarMin__mym.innerHTML = iftarMin17 + 2;
+                // Barisal Division
+                sehriHour[2].innerHTML = sehriHour17;
+                iftarHour[2].innerHTML = iftarHour17;
+                sehriMin__bari.innerHTML = sehriMin17 + 2;
+                iftarMin__bari.innerHTML = iftarMin17 - 1;
+                // Khulna Division
+                sehriHour[3].innerHTML = sehriHour17;
+                iftarHour[3].innerHTML = iftarHour17;
+                sehriMin__kh.innerHTML = sehriMin17 + 5;
+                iftarMin__kh.innerHTML = iftarMin17 + 3;
+                // Rajshahi Division
+                sehriHour[4].innerHTML = sehriHour17;
+                iftarHour[4].innerHTML = iftarHour17;
+                sehriMin__rj.innerHTML = sehriMin17 + 5;
+                iftarMin__rj.innerHTML = iftarMin17 + 5;
+                // Rangpur Division
+                sehriHour[5].innerHTML = sehriHour17;
+                iftarHour[5].innerHTML = iftarHour17;
+                sehriMin__rn.innerHTML = sehriMin17;
+                iftarMin__rn.innerHTML = iftarMin17;
+                // Sylhet Division
+                sehriHour[6].innerHTML = sehriHour17;
+                iftarHour[6].innerHTML = iftarHour17;
+                sehriMin__sl.innerHTML = sehriMin17 - 7;
+                iftarMin__sl.innerHTML = iftarMin17 - 4;
+                // Chattogram Division
+                sehriHour[7].innerHTML = sehriHour17;
+                iftarHour[7].innerHTML = iftarHour17;
+                sehriMin__ch.innerHTML = sehriMin17 - 2;
+                iftarMin__ch.innerHTML = iftarMin17 - 7;
+            } 
+            else {
+                document.getElementById('ramadan').style.display = "none";
+                document.getElementById('duwa').style.display = "none";
+                document.getElementById('others').style.display = "block";
+            }
+        } 
+
+
+        // Open modal 
+        var modalSahri  = document.getElementById('saherir-duwa');
+        var modaliftar  = document.getElementById('iftarer-duwa');
+        var sahriBtn    = document.getElementById('sahri-btn');
+        var iftarBtn    = document.getElementById('iftar-btn');
+        var closeBtn    = document.getElementsByClassName('close')[0];
+        var closeBtn2   = document.getElementsByClassName('close')[1];
+
+        // Shahri
+        sahriBtn.onclick = function() {
+            modalSahri.style.visibility = "visible";
+            modalSahri.style.opacity = "1";
+        };
+        closeBtn.onclick = function() {
+            modalSahri.style.visibility = "hidden";
+            modalSahri.style.opacity = "0";
+        };
+        window.onclick = function(event) {
+            if (event.target == modalSahri) {
+                modalSahri.style.visibility = "hidden";
+                modalSahri.style.opacity = "0";
+            }
+        };
+
+        // Iftar
+        iftarBtn.onclick = function() {
+            modaliftar.style.visibility = "visible";
+            modaliftar.style.opacity = "1";
+        };
+        closeBtn2.onclick = function() {
+            modaliftar.style.visibility = "hidden";
+            modaliftar.style.opacity = "0";
+        };
+        window.onclick = function(event) {
+            if (event.target == modaliftar) {
+                modaliftar.style.visibility = "hidden";
+                modaliftar.style.opacity = "0";
+            }
+        };
+
+    </script>
+</body>
+</html>
