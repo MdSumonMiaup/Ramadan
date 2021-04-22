@@ -1565,7 +1565,7 @@ if (thisMonth == 4 ) {
         sehriMin__rn.innerHTML = sehriMin10;
         iftarMin__rn.innerHTML = iftarMin10;
         // Sylhet Division
-        sehriHour[6].innerHTML = sehriHour10;
+        sehriHour[6].innerHTML = addZero(sehriHour10 - 1);
 
         sehriMin__sl.innerHTML = addZero(sixty(parseInt(sehriMin10) - parseInt(7)));
         iftarMin__sl.innerHTML = iftarMin10 - 4;
@@ -1631,7 +1631,7 @@ if (thisMonth == 4 ) {
         sehriMin__rn.innerHTML = sehriMin11;
         iftarMin__rn.innerHTML = iftarMin11;
         // Sylhet Division
-        sehriHour[6].innerHTML = sehriHour11;
+        sehriHour[6].innerHTML = addZero(sehriHour11 - 1);
 
         sehriMin__sl.innerHTML = addZero(sixty(parseInt(sehriMin11) - parseInt(7)));
         iftarMin__sl.innerHTML = iftarMin11 - 4;
@@ -1697,7 +1697,7 @@ if (thisMonth == 4 ) {
         sehriMin__rn.innerHTML = sehriMin12;
         iftarMin__rn.innerHTML = iftarMin12;
         // Sylhet Division
-        sehriHour[6].innerHTML = sehriHour12;
+        sehriHour[6].innerHTML = addZero(sehriHour12 - 1);
 
         sehriMin__sl.innerHTML = addZero(sixty(parseInt(sehriMin12) - parseInt(7)));
         iftarMin__sl.innerHTML = iftarMin12 - 4;
@@ -1745,32 +1745,26 @@ if (thisMonth == 4 ) {
         iftarMin__mym.innerHTML = iftarMin13 + 2;
         // Barisal Division
         sehriHour[2].innerHTML = sehriHour13;
-
         sehriMin__bari.innerHTML = addZero(parseInt(sehriMin13) + parseInt(2));
         iftarMin__bari.innerHTML = iftarMin13 - 1;
         // Khulna Division
         sehriHour[3].innerHTML = sehriHour13;
-
         sehriMin__kh.innerHTML = addZero(parseInt(sehriMin13) + parseInt(5));
         iftarMin__kh.innerHTML = iftarMin13 + 3;
         // Rajshahi Division
         sehriHour[4].innerHTML = sehriHour13;
-
         sehriMin__rj.innerHTML = addZero(parseInt(sehriMin13) + parseInt(5));
         iftarMin__rj.innerHTML = iftarMin13 + 5;
         // Rangpur Division
         sehriHour[5].innerHTML = sehriHour13;
-
         sehriMin__rn.innerHTML = sehriMin13;
         iftarMin__rn.innerHTML = iftarMin13;
         // Sylhet Division
-        sehriHour[6].innerHTML = sehriHour13;
-
+        sehriHour[6].innerHTML = addZero(sehriHour13 - 1);
         sehriMin__sl.innerHTML = addZero(sixty(parseInt(sehriMin13) - parseInt(7)));
         iftarMin__sl.innerHTML = iftarMin13 - 4;
         // Chattogram Division
         sehriHour[7].innerHTML = sehriHour13;
-
         sehriMin__ch.innerHTML = addZero(parseInt(sehriMin13) - parseInt(2));
         iftarMin__ch.innerHTML = iftarMin13 - 7;
 
@@ -1831,13 +1825,11 @@ if (thisMonth == 4 ) {
         sehriMin__rn.innerHTML = sehriMin14;
         iftarMin__rn.innerHTML = iftarMin14;
         // Sylhet Division
-        sehriHour[6].innerHTML = sehriHour14;
-
+        sehriHour[6].innerHTML = addZero(sehriHour14 - 1);
         sehriMin__sl.innerHTML = addZero(sixty(parseInt(sehriMin14) - parseInt(7)));
         iftarMin__sl.innerHTML = iftarMin14 - 4;
         // Chattogram Division
         sehriHour[7].innerHTML = sehriHour14;
-
         sehriMin__ch.innerHTML = addZero(parseInt(sehriMin14) - parseInt(2));
         iftarMin__ch.innerHTML = iftarMin14 - 7;
 
@@ -1898,7 +1890,7 @@ if (thisMonth == 4 ) {
         sehriMin__rn.innerHTML = sehriMin15;
         iftarMin__rn.innerHTML = iftarMin15;
         // Sylhet Division
-        sehriHour[6].innerHTML = sehriHour15;
+        sehriHour[6].innerHTML = addZero(sehriHour15 - 1);
 
         sehriMin__sl.innerHTML = addZero(sixty(parseInt(sehriMin15) - parseInt(7)));
         iftarMin__sl.innerHTML = iftarMin15 - 4;
@@ -1965,12 +1957,12 @@ if (thisMonth == 4 ) {
         sehriMin__rn.innerHTML = sehriMin16;
         iftarMin__rn.innerHTML = iftarMin16;
         // Sylhet Division
-        sehriHour[6].innerHTML = sehriHour16;
+        sehriHour[6].innerHTML = addZero(sehriHour16 - 1);
 
         sehriMin__sl.innerHTML = addZero(sixty(parseInt(sehriMin16) - parseInt(7)));
         iftarMin__sl.innerHTML = iftarMin16 - 4;
         // Chattogram Division
-        sehriHour[7].innerHTML = sehriHour16;
+        sehriHour[7].innerHTML = addZero(sehriHour16 - 1);
 
         sehriMin__ch.innerHTML = sixty(parseInt(sehriMin16) - parseInt(2));
         iftarMin__ch.innerHTML = iftarMin16 - 7;
