@@ -1,0 +1,216 @@
+/*
+        About          
+=========================
+Theme Name: Ramadan Time Table 2021 Bangladesh
+Theme URI: https://thew3lab.xyz/template/ramadan/
+Author: Md Sumon Mia
+Author URI: https://mdsumonmia.com
+Description: Ramadan 2021 Time Table is a web based apps for Ramadan 2021 Bangladesh Shahri and Iftar Time.
+Version: 1.0.0
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: 'Exo 2', sans-serif;
+}
+.ramadan {
+	text-align: center;
+	margin-top: 50px;
+}
+#ramadanDay {
+	color: #ff0018;
+}
+.ramadan__table table {
+	width: 500px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+table {
+	border-collapse: collapse;
+}
+table tr:nth-child(odd) {
+	background-color: #ededed;
+}
+.table__heading {
+	background: green !important;
+	color: #fff;
+}
+table tr td,
+table tr th {
+	border: 1px solid #ededed;
+	border-collapse: collapse;
+	padding: 12px 20px;
+	text-align: left;
+}
+.eid {
+	text-align: center;
+}
+#eid__welcome {
+	display: none;
+}
+#duwa {
+	text-align: center;
+	margin-top: 20px;
+}
+.duwa-btn {
+	display: inline-block;
+	background: green;
+	color: #fff;
+	padding: 12px 30px;
+	text-align: center;
+	text-decoration: none;
+	margin: 0 8px;
+	font-weight: 600;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	transition: .3s ease-in-out;
+}
+.duwa-btn:hover {
+	background: #056905;
+}
+.duwa-btn:active #saherir-duwa {
+	visibility: visible;
+	opacity: 1;
+}
+#saherir-duwa,
+#iftarer-duwa {
+	max-width: 500px;
+	background: #fff;
+	padding: 30px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: .3s ease-in-out;
+	box-shadow: 0 0 0 8000px rgba(0, 0, 0, .5);
+	border-radius: 10px;
+	padding-bottom: 15px;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 1;
+}
+.mb-20 {
+	margin-bottom: 20px;
+}
+.duwa-title {
+	border-bottom: 1px solid #ededed;
+	padding-bottom: 10px;
+	font-size: 22px;
+	font-weight: 500;
+	margin-bottom: 20px;
+}
+#saherir-duwa p,
+#iftarer-duwa p {
+	font-size: 18px;
+	line-height: 1.6;
+}
+#saherir-duwa .arbi-text,
+#iftarer-duwa .arbi-text {
+	font-size: 22px;
+}
+.close {
+	background: #ed3838;
+	padding: 6px 15px 10px;
+	border-radius: 6px;
+	color: #fff;
+	float: right;
+	cursor: pointer;
+	font-size: 16px;
+	border: none;
+	transition: .3s ease-in-out;
+}
+.close:hover {
+	background: #d41e1e;
+}
+#eid__welcome {
+	font-size: 100px;
+	margin: 150px 20px;
+}
+#others {
+	text-align: center;
+	max-width: 700px;
+	margin: 50px auto;
+	line-height: 1.6;
+	display: none;
+}
+#coming-time {
+	display: none;
+	background: green;
+	width: 260px;
+	color: #fff;
+	margin: 20px auto;
+	border: 1px solid #ededed;
+}
+.coming-title {
+	background-color: #fff;
+	color: #242424;
+	padding: 6px 6px 8px;
+}
+.countdown {
+	display: flex;
+	justify-content: center;
+}
+.coming-time-item {
+	padding: 10px;
+	width: 33%;
+}
+#hour {
+	font-weight: 800;
+}
+#hour ~ h4 {
+	font-weight: 800;
+}
+#minute {
+	font-weight: 600;
+}
+#minute ~ h4 {
+	font-weight: 600;
+}
+#second {
+	font-weight: 400;
+}
+#second ~ h4 {
+	font-weight: 400;
+}
+
+.br-1 {
+	border-right: 1px solid #ededed;
+}
+
+.copyright {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
+.copyright a {
+	color: green;
+	text-decoration: none;
+}
+
+@media only screen and (max-width: 1024px) {
+	#saherir-duwa, #iftarer-duwa {
+		min-width: 500px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.ramadan__table table {
+		width: 90%;
+	}
+	#saherir-duwa, #iftarer-duwa {
+		min-width: 85%;
+		padding: 15px;
+	}
+}
+@media only screen and (max-width: 400px) {
+	table tr td, table tr th {
+		padding: 8px 15px;
+	}
+	.duwa-btn {
+		margin-bottom: 10px;
+	}
+}
